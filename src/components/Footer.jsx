@@ -1,55 +1,62 @@
+import "./Footer.css";
+
 function Footer() {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-slate-900 text-gray-400 py-8 ">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="footer">
+      <div className="footer__inner">
+        <div className="footer__top">
+          <a href="#hero" className="footer__brand">
+            <span className="footer__brand-mark">R.</span>
+            <span className="footer__brand-name">Ryan</span>
+          </a>
 
-        {/* Name / Copyright */}
-        <div className="text-sm">
-          © 2026 <span className="text-cyan-400 font-semibold">Reen Ryan</span>. All rights reserved.
-        </div>
+          <p className="footer__message">
+            Building, learning, and improving — one project at a time.
+          </p>
 
-        {/* Social Icons */}
-        <div className="flex gap-6">
-          <a
-            href="https://wa.me/254114134699"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-green-500 transition"
-          >
-            WhatsApp
-          </a>
-          <a
-            href="mailto:andrianmutwii@gmail.com"
-            className="hover:text-blue-500 transition"
-          >
-            Email
-          </a>
-          <a
-            href="https://github.com/Reenryan"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gray-100 transition"
-          >
-            GitHub
-          </a>
-          <a
-            href="https://linkedin.com/in/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-400 transition"
-          >
-            LinkedIn
+          <a href="#hero" className="footer__back-top">
+            Back to top <span aria-hidden="true">↑</span>
           </a>
         </div>
 
-        {/* Back to top */}
-        <div>
-          <a
-            href="#"
-            className="text-sm text-gray-400 hover:text-cyan-400 transition"
-          >
-            Back to top ↑
-          </a>
+        <div className="footer__divider" />
+
+        <div className="footer__bottom">
+          <p className="footer__copyright">
+            © {currentYear} <strong>Reen Ryan</strong>. All rights reserved.
+          </p>
+
+          <nav className="footer__socials" aria-label="Social links">
+            <a
+              href="https://wa.me/254114134699"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+
+            <a href="mailto:andrianmutwii@gmail.com">
+              Email <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="https://github.com/Reenryan"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <span aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href="https://linkedin.com/in/yourusername"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn <span aria-hidden="true">↗</span>
+            </a>
+          </nav>
         </div>
       </div>
     </footer>

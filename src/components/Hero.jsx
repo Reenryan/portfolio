@@ -1,75 +1,76 @@
+
+import "./Hero.css";
+
 function Hero() {
   return (
+    <section
+      className="hero"
+      id="home"
+      aria-labelledby="hero-title"
+    >
+      <div className="hero__content">
+        <div className="hero__eyebrow">
+          <span className="hero__status" aria-hidden="true" />
+          <span>SOFTWARE DEVELOPER & DATA ANALYST</span>
+        </div>
 
-<section className="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-slate-900">
+        <div className="hero__profile">
+          <div className="hero__image-wrap">
+            <img
+              src="/data/a.jpeg"
+              alt="Portrait of Mutwii Andrian Muia"
+              className="hero__image"
+            />
+          </div>
 
-{/* PROFILE IMAGE */}
+          <span className="hero__image-caption">
+            <span className="hero__caption-line" />
+            Based in Kenya
+          </span>
+        </div>
 
-<div className="relative">
+        <h1 className="hero__title" id="hero-title">
+          Hi, I'm
+          <br />
+          <span className="hero__name">
+            Mutwii Andrian Muia.
+          </span>
+          <br />
+          <span className="hero__title-last">
+            I build things that matter.
+          </span>
+        </h1>
 
-<img
-src="/data/a.jpeg"
-alt="profile"
-className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-cyan-400 object-cover"
-/>
+        <div className="hero__bottom">
+          <p className="hero__description">
+            I build reliable software, thoughtful digital experiences,
+            and data-driven solutions to real-world problems.
+          </p>
 
-<span className="absolute inset-0 rounded-full border-4 border-cyan-400 animate-ping"></span>
+          <div className="hero__actions">
+            <a
+              href="/data/reen.pdf"
+              download
+              className="hero__button"
+            >
+              <span>Download resume</span>
+              <span aria-hidden="true">↗</span>
+            </a>
 
-</div>
+            <a href="#projects" className="hero__text-link">
+              Explore my work
+              <span aria-hidden="true">↓</span>
+            </a>
+          </div>
+        </div>
 
-
-{/* TITLE */}
-
-<h1 className="text-3xl md:text-5xl font-bold mt-6 text-white">
-
-Hi, I'm <span className="text-cyan-400">Reen Ryan</span>
-
-</h1>
-
-
-{/* DESCRIPTION */}
-
-<ol className="mt-6 max-w-2xl space-y-4 text-gray-300 text-sm md:text-base">
-
-<li className="flex gap-3 text-left">
-<span className="text-cyan-400 font-bold">01.</span>
-<span>
-Software Developer and Data Analyst experienced in building scalable systems and modern web applications.
-</span>
-</li>
-
-<li className="flex gap-3 text-left">
-<span className="text-cyan-400 font-bold">02.</span>
-<span>
-Strong background in backend services, APIs, and user interfaces with emphasis on clean, maintainable solutions.
-</span>
-</li>
-
-<li className="flex gap-3 text-left">
-<span className="text-cyan-400 font-bold">03.</span>
-<span>
-Passionate about solving real-world problems through data analysis, modelling, and modern technology.
-</span>
-</li>
-
-</ol>
-
-
-{/* BUTTON */}
-
-<a
-href="/data/reen.pdf"
-download
-className="mt-8 bg-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-600 transition"
->
-
-Download Resume
-
-</a>
-
-</section>
-
-  )
+        <div className="hero__index" aria-hidden="true">
+          <span>PORTFOLIO — 2026</span>
+          <span>01 / INTRODUCTION</span>
+        </div>
+      </div>
+    </section>
+  );
 }
 
-export default Hero
+export default Hero;

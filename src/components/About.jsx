@@ -1,75 +1,208 @@
+
+import { useState } from "react";
+import "./About.css";
+
+const skills = [
+  {
+    name: "Python",
+    category: "DATA ANALYSIS",
+    image: "/data/skills/python.png",
+    description: "Data analysis, automation, and predictive modelling.",
+  },
+  {
+    name: "Pandas",
+    category: "DATA ANALYSIS",
+    image: "/data/skills/data.png",
+    description: "Data cleaning, transformation, and exploration.",
+  },
+  {
+    name: "MySQL",
+    category: "DATABASES",
+    image: "/data/skills/mysql.png",
+    description: "Relational databases, SQL queries, and data management.",
+  },
+  {
+    name: "Node.js",
+    category: "BACKEND DEVELOPMENT",
+    image: "/data/skills/node.png",
+    description: "Server-side applications and REST API development.",
+  },
+  {
+    name: "MongoDB",
+    category: "DATABASES",
+    image: "/data/skills/mongo.png",
+    description: "Document databases and flexible data storage.",
+  },
+  {
+    name: "Statistics",
+    category: "STATISTICS",
+    image: "/data/skills/mat.png",
+    description: "Statistical reasoning, descriptive analysis, and interpretation.",
+  },
+];
+
 export default function About() {
-  const skillIcons = [
-    "/data/skills/python.png",
-    "/data/skills/canva.png",
-    "/data/skills/mat.png",
-    "/data/skills/mysql.png",
-    "/data/skills/node.png",
-    "/data/skills/data.png",
-    "/data/skills/mongo.png",
-  ];
+  const [activeSkill, setActiveSkill] = useState(0);
+  const skill = skills[activeSkill];
+
+  function showNextSkill() {
+    setActiveSkill((current) => (current + 1) % skills.length);
+  }
+
+  function showPreviousSkill() {
+    setActiveSkill(
+      (current) => (current - 1 + skills.length) % skills.length
+    );
+  }
 
   return (
-    <section id="about" className="py-24 bg-slate-900 text-white ">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12 px-4">
+    <section
+      id="about"
+      className="about"
+      aria-labelledby="about-title"
+    >
+      <div className="about__inner">
+        <div className="about__heading">
+          <span className="about__eyebrow">
+            02 / A LITTLE ABOUT ME
+          </span>
 
-        {/* Circular rotating skill ring */}
-        <div className="relative w-64 h-64 flex items-center justify-center mx-auto md:mx-0">
-          <div
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ animation: "rotateRing 20s linear infinite" }}
-          >
-            {skillIcons.map((icon, index) => {
-              const angle = (360 / skillIcons.length) * index;
-              return (
-                <img
-                  key={index}
-                  src={icon}
-                  alt={`Skill ${index}`}
-                  className="w-12 h-12 md:w-16 md:h-16 absolute"
-                  style={{
-                    transform: `rotate(${angle}deg) translate(100px) rotate(-${angle}deg)`,
-                    transformOrigin: "center center",
-                  }}
-                />
-              );
-            })}
-          </div>
-
-          <div className="absolute w-12 h-12 rounded-full bg-slate-800/30 border-2 border-cyan-400"></div>
-
-          <style>
-            {`
-              @keyframes rotateRing {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-              }
-            `}
-          </style>
+          <h2 id="about-title" className="about__title">
+            Curious by nature.
+            <br />
+            <span>Driven to build.</span>
+          </h2>
         </div>
 
-        {/* Text */}
-        <div className="flex-1 space-y-4 text-center md:text-left">
-          <h2 className="text-4xl font-bold text-cyan-400">About Me</h2>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            Hi, I'm <span className="text-cyan-400 font-semibold">Muwtii Andrian Muia</span>, a Full-Stack Web Developer, Data Analyst, and Designer of engaging posters and slides. I build scalable web applications, craft insightful dashboards, and design visual content that captures attention.
-          </p>
-          <p className="text-gray-300 text-lg leading-relaxed">
-            I love turning ideas into reality with modern technologies, and I’m always looking for exciting projects. If you need quality work done, whether it’s web development, data analysis, or creative design, don’t hesitate to <span className="text-cyan-400 font-semibold">reach out</span>!
-          </p>
-          <ul className="list-decimal list-inside space-y-2 text-gray-400">
-            <li>Full-stack web applications with React, Node.js, and databases</li>
-            <li>Data analysis and interactive dashboards for smart decisions</li>
-            <li>Creative poster and slide designs to communicate your message</li>
-          </ul>
+        <div className="about__layout">
+          <div className="about__visual">
+            <div
+              className="about__skill-card"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <div className="about__card-top">
+                <span>TECHNOLOGY INDEX</span>
+                <span>
+                  {String(activeSkill + 1).padStart(2, "0")} /{" "}
+                  {String(skills.length).padStart(2, "0")}
+                </span>
+              </div>
 
-          <div className="mt-6">
-            <a href="/data/reen.pdf" download className="bg-cyan-500 px-6 py-3 rounded-lg hover:bg-cyan-600 transition">
-              Download Resume
+              <div className="about__skill-display" key={skill.name}>
+                <div className="about__skill-orbit" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+
+                <div className="about__skill-icon">
+                  <img
+                    src={skill.image}
+                    alt=""
+                    onError={(event) => {
+                      event.currentTarget.style.visibility = "hidden";
+                    }}
+                  />
+                </div>
+              </div>
+
+              <div className="about__skill-info" key={`info-${skill.name}`}>
+                <span className="about__skill-category">
+                  {skill.category}
+                </span>
+                <h3>{skill.name}</h3>
+                <p>{skill.description}</p>
+              </div>
+
+              <div className="about__skill-controls">
+                <button
+                  type="button"
+                  onClick={showPreviousSkill}
+                  aria-label="Previous technology"
+                >
+                  ←
+                </button>
+
+                <div className="about__skill-dots" aria-label="Choose a technology">
+                  {skills.map((item, index) => (
+                    <button
+                      key={item.name}
+                      type="button"
+                      className={
+                        index === activeSkill
+                          ? "about__dot about__dot--active"
+                          : "about__dot"
+                      }
+                      onClick={() => setActiveSkill(index)}
+                      aria-label={`Show ${item.name}`}
+                      aria-pressed={index === activeSkill}
+                    />
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={showNextSkill}
+                  aria-label="Next technology"
+                >
+                  →
+                </button>
+              </div>
+            </div>
+
+            <p className="about__visual-caption">
+              A selection of tools I use to turn ideas into working solutions.
+            </p>
+          </div>
+
+          <div className="about__copy">
+            <p className="about__lead">
+              I'm <strong>Mutwii Andrian Muia</strong>, a software developer
+              and data analyst interested in building useful digital products
+              and finding meaningful insights in data.
+            </p>
+
+            <p>
+              I work across web development, data analysis, and visual design.
+              I enjoy solving practical problems, learning new technologies,
+              and creating solutions that are both reliable and easy to use.
+            </p>
+
+            <p>
+              My goal is to bring technical thinking and creativity together,
+              whether I'm developing an application, exploring a dataset, or
+              communicating information through a dashboard.
+            </p>
+
+            <div className="about__focus">
+              <h3>What I enjoy working on</h3>
+
+              <ul>
+                <li>
+                  <span>01</span>
+                  Full-stack applications and APIs
+                </li>
+                <li>
+                  <span>02</span>
+                  Data analysis, statistics, and dashboards
+                </li>
+                <li>
+                  <span>03</span>
+                  Visual design and clear communication
+                </li>
+              </ul>
+            </div>
+
+            <a
+              href="/data/reen.pdf"
+              download
+              className="about__resume"
+            >
+              Download my resume <span aria-hidden="true">↗</span>
             </a>
           </div>
         </div>
-
       </div>
     </section>
   );

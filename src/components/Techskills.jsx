@@ -1,78 +1,158 @@
-export default function Techskills() {
-  const skills = [
-    "Python","R","Matlab","NodeJS","C","Express","JavaScript",
-    "Java","CSS","HTML","React","Embedded JS",
-    "MySQL","SQL Server","MongoDB","Docker",
-    "Git","GitHub","Power BI","MS Excel","Canva"
-  ];
 
+import "./TechSkills.css";
+
+const skillGroups = [
+  {
+    number: "01",
+    title: "Programming",
+    description: "Languages for building applications and solving problems.",
+    skills: [
+      "Python",
+      "JavaScript",
+      "Java",
+      "C",
+      "R",
+      "MATLAB",
+    ],
+  },
+  {
+  number: "02",
+  title: "Data Analysis",
+  description:
+    "Data cleaning, statistical analysis, visualization, and extracting insights to support informed decisions.",
+  skills: [
+    "Python",
+    "R",
+    "MATLAB",
+    "Power BI",
+    "Microsoft Excel",
+    "Statistics",
+    "Data Visualization",
+    "Predictive Modelling",
+  ],
+},
+  {
+    number: "03",
+    title: "Web Development",
+    description: "Frontend interfaces and server-side application development.",
+    skills: [
+      "HTML",
+      "CSS",
+      "React",
+      "Node.js",
+      "Express",
+      "Embedded JavaScript (EJS)",
+    ],
+  },
+  {
+    number: "04",
+    title: "Data & Databases",
+    description: "Working with structured data, analysis, and visualization.",
+    skills: [
+      "MySQL",
+      "SQL Server",
+      "MongoDB",
+      "Power BI",
+      "Microsoft Excel",
+    ],
+  },
+  {
+    number: "05",
+    title: "Tools & Design",
+    description: "Version control, containers, and visual communication.",
+    skills: [
+      "Git",
+      "GitHub",
+      "Docker",
+      "Canva",
+    ],
+  },
+];
+
+const tickerSkills = [
+  "Python",
+  "React",
+  "Node.js",
+  "SQL",
+  "Power BI",
+  "JavaScript",
+  "Docker",
+  "Data Analysis",
+  "Git",
+  "MongoDB",
+];
+
+export default function Techskills() {
   return (
     <section
       id="skills"
-      className="relative overflow-hidden py-20 animated-gradient px-4 md:px-6"
+      className="techskills"
+      aria-labelledby="techskills-title"
     >
-      <h2 className="text-center text-3xl md:text-4xl font-bold text-white mb-14">
-        Technical Skills
-      </h2>
+      <div className="techskills__inner">
+        <header className="techskills__header">
+          <span className="techskills__eyebrow">
+            03 / TOOLS OF THE TRADE
+          </span>
 
-      <div className="space-y-10 max-w-full">
+          <div className="techskills__heading-row">
+            <h2 id="techskills-title" className="techskills__title">
+              Technical
+              <br />
+              <span>skills & tools.</span>
+            </h2>
 
-        {/* Row 1: scroll left */}
-        <div className="relative w-full overflow-hidden h-12">
-          <div className="flex gap-10 animate-scroll-left">
-            {skills.concat(skills).map((skill, i) => (
-              <span
-                key={i}
-                className="px-6 py-2 bg-slate-800/60 rounded-xl backdrop-blur text-sky-400 text-lg font-medium whitespace-nowrap"
-              >
-                {skill}
-              </span>
-            ))}
+            <p className="techskills__intro">
+              A growing toolkit for building software, working with data,
+              and bringing ideas to life.
+            </p>
           </div>
-        </div>
+        </header>
 
-        {/* Row 2: scroll right */}
-        <div className="relative w-full overflow-hidden h-12">
-          <div className="flex gap-10 animate-scroll-right">
-            {skills.concat(skills).map((skill, i) => (
-              <span
-                key={i}
-                className="px-6 py-2 bg-slate-800/60 rounded-xl backdrop-blur text-purple-400 text-lg font-medium whitespace-nowrap"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
+        <div className="techskills__groups">
+          {skillGroups.map((group) => (
+            <article className="techskills__group" key={group.number}>
+              <div className="techskills__group-heading">
+                <span className="techskills__number">
+                  {group.number}
+                </span>
 
-        {/* Row 3: scroll left slow */}
-        <div className="relative w-full overflow-hidden h-12">
-          <div className="flex gap-10 animate-scroll-left-slow">
-            {skills.concat(skills).map((skill, i) => (
-              <span
-                key={i}
-                className="px-6 py-2 bg-slate-800/60 rounded-xl backdrop-blur text-emerald-400 text-lg font-medium whitespace-nowrap"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
+                <div>
+                  <h3>{group.title}</h3>
+                  <p>{group.description}</p>
+                </div>
+              </div>
 
-        {/* Row 4: scroll right slow */}
-        <div className="relative w-full overflow-hidden h-12">
-          <div className="flex gap-10 animate-scroll-right-slow">
-            {skills.concat(skills).map((skill, i) => (
-              <span
-                key={i}
-                className="px-6 py-2 bg-slate-800/60 rounded-xl backdrop-blur text-orange-400 text-lg font-medium whitespace-nowrap"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
+              <div className="techskills__list">
+                {group.skills.map((skill) => (
+                  <span className="techskills__tag" key={skill}>
+                    {skill}
+                    <span
+                      className="techskills__tag-mark"
+                      aria-hidden="true"
+                    >
+                      ↗
+                    </span>
+                  </span>
+                ))}
+              </div>
+            </article>
+          ))}
         </div>
+      </div>
 
+      <div className="techskills__ticker" aria-label="Selected technologies">
+        <div className="techskills__ticker-track" aria-hidden="true">
+          {[...tickerSkills, ...tickerSkills].map((skill, index) => (
+            <span
+              className="techskills__ticker-item"
+              key={`${skill}-${index}`}
+            >
+              <span className="techskills__ticker-dot" />
+              {skill}
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

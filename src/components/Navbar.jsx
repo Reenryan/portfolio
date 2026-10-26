@@ -1,89 +1,124 @@
-import { useState } from "react"
-import { FaBars, FaTimes } from "react-icons/fa"
 
-function Navbar() {
+import { useEffect, useState } from "react";
+import { FaBars, FaMoon, FaSun, FaTimes } from "react-icons/fa";
+import "./Navbar.css";
 
-const [menuOpen,setMenuOpen] = useState(false)
+const navLinks = [
+  { label: "About", href: "#about" },
+  { label: "Skills", href: "#skills" },
+  { label: "Projects", href: "#projects" },
+  { label: "Dashboards", href: "#dashboards" },
+  { label: "Contact Me", href: "#contact" },
+];
 
-return (
-
-<nav className="fixed top-0 w-full bg-slate-900 shadow-lg z-50">
-
-<div className="max-w-6xl mx-auto flex justify-between items-center p-4">
-
-
-{/* MOBILE MENU BUTTON */}
-
-<button
-className="text-cyan-400 text-2xl md:hidden"
-onClick={()=>setMenuOpen(!menuOpen)}
->
-
-{menuOpen ? <FaTimes/> : <FaBars/>}
-
-</button>
-
-
-{/* LOGO */}
-
-<h1 className="text-xl md:text-2xl font-bold text-cyan-400">
-
-Data Analyst & Software Developer
-
-</h1>
-
-
-{/* DESKTOP MENU */}
-
-<ul className="hidden md:flex gap-8 text-gray-300">
-  <li>
-    <a href="#about" className="hover:text-cyan-400 cursor-pointer">About</a>
-  </li>
-  <li>
-    <a href="#skills" className="hover:text-cyan-400 cursor-pointer">Skills</a>
-  </li>
-  <li>
-    <a href="#projects" className="hover:text-cyan-400 cursor-pointer">Projects</a>
-  </li>
-  <li>
-    <a href="#dashboards" className="hover:text-cyan-400 cursor-pointer">Dashboards</a>
-  </li>
-  <li>
-    <a href="#contact" className="hover:text-cyan-400 cursor-pointer">Contact</a>
-  </li>
-</ul>
-
-</div>
-
-
-{/* MOBILE MENU */}
-
-{menuOpen && (
-  <div className="md:hidden absolute left-0 top-16 w-40 bg-slate-800 px-6 py-6 shadow-lg rounded-r-xl">
-    <ul className="flex flex-col gap-4 text-gray-300">
-      <li>
-        <a href="#about" className="hover:text-cyan-400 cursor-pointer" onClick={() => setMenuOpen(false)}>About</a>
-      </li>
-      <li>
-        <a href="#skills" className="hover:text-cyan-400 cursor-pointer" onClick={() => setMenuOpen(false)}>Skills</a>
-      </li>
-      <li>
-        <a href="#projects" className="hover:text-cyan-400 cursor-pointer" onClick={() => setMenuOpen(false)}>Projects</a>
-      </li>
-      <li>
-        <a href="#dashboards" className="hover:text-cyan-400 cursor-pointer" onClick={() => setMenuOpen(false)}>Dashboards</a>
-      </li>
-      <li>
-        <a href="#contact" className="hover:text-cyan-400 cursor-pointer" onClick={() => setMenuOpen(false)}>Contact</a>
-      </li>
-    </ul>
-  </div>
-)}
-
-</nav>
-
-)
-
+function getInitialTheme() {
+  try {
+    return localStorage.getItem("portfolio-theme") === "dark";
+  } catch {
+    return false;
+  }
 }
 
-export default Navbar
+function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? "dark" : "light";
+
+    try {
+      localStorage.setItem(
+        "portfolio-theme",
+        darkMode ? "dark" : "light"
+      );
+    } catch {
+      // Theme switching still works if browser storage is unavailable.
+    }
+  }, [darkMode]);
+
+  useEffect(() => {
+    function handleEscape(event) {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+      }
+    }
+
+    window.addEventListener("keydown", handleEscape);
+
+    return () => {
+      window.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
+  function toggleTheme() {
+    setDarkMode((current) => !current);
+  }
+
+  return (
+    <header className="navbar">
+      <nav className="navbar__inner" aria-label="Main navigation">
+        <a
+          href="#home"
+          className="navbar__brand"
+          onClick={closeMenu}
+          aria-label="Reen Ryan — home"
+        >
+          reen<span>.</span>
+        </a>
+
+        <button
+          type="button"
+          className="navbar__menu-button"
+          onClick={() => setMenuOpen((open) => !open)}
+          aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={menuOpen}
+          aria-controls="navbar-links"
+        >
+          {menuOpen ? <FaTimes aria-hidden="true" /> : <FaBars aria-hidden="true" />}
+        </button>
+
+        <div
+          id="navbar-links"
+          className={`navbar__menu ${
+            menuOpen ? "navbar__menu--open" : ""
+          }`}
+        >
+          <ul className="navbar__links">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="navbar__link"
+                  onClick={closeMenu}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <button
+            type="button"
+            className="navbar__theme-button"
+            onClick={toggleTheme}
+            aria-label={`Switch to ${darkMode ? "light" : "dark"} mode`}
+            aria-pressed={darkMode}
+          >
+            {darkMode ? (
+              <FaSun aria-hidden="true" />
+            ) : (
+              <FaMoon aria-hidden="true" />
+            )}
+            <span>{darkMode ? "Light mode" : "Dark mode"}</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
+export default Navbar;

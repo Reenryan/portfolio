@@ -1,46 +1,104 @@
+import { useState } from "react";
+import "./Contact.css";
+
+const emailAddress = "andrianmutwii@gmail.com";
+const whatsappUrl = "https://wa.me/254114134699";
+
 function Contact() {
+  const [copied, setCopied] = useState(false);
+
+  async function copyEmail() {
+    try {
+      await navigator.clipboard.writeText(emailAddress);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      window.location.href = `mailto:${emailAddress}`;
+    }
+  }
+
   return (
-    <section id="contact" className="py-24 bg-slate-900 text-white animated-gradient">
-      <h2 className="text-4xl font-bold text-center text-cyan-400 mb-16">
-        Contact Me
-      </h2>
+    <section
+      id="contact"
+      className="contact"
+      aria-labelledby="contact-title"
+    >
+      <div className="contact__inner">
+        <span className="contact__eyebrow">07 / LET'S CONNECT</span>
 
-      <div className="max-w-4xl mx-auto flex flex-col md:flex-row justify-around items-center gap-12 px-4">
+        <div className="contact__main">
+          <div className="contact__heading">
+            <h2 id="contact-title" className="contact__title">
+              Have an idea?
+              <br />
+              <span>Let's talk.</span>
+            </h2>
 
-        {/* WhatsApp */}
-        <a
-          href="https://wa.me/254114134699"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-3 bg-green-500 hover:bg-green-600 px-6 py-4 rounded-lg transition transform hover:scale-105 shadow-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M20.52 3.48A11.923 11.923 0 0012 0C5.373 0 0 5.373 0 12a11.95 11.95 0 001.84 6.27L0 24l5.79-1.81A11.957 11.957 0 0012 24c6.627 0 12-5.373 12-12 0-3.2-1.24-6.2-3.48-8.52zm-8.52 19c-2.02 0-3.91-.58-5.5-1.57l-.39-.24-3.45 1.08 1.17-3.36-.26-.4A9.937 9.937 0 012 12c0-5.52 4.48-10 10-10s10 4.48 10 10-4.48 10-10 10zm5.38-7.25c-.29-.15-1.73-.85-2-.95-.27-.1-.46-.15-.65.15s-.75.95-.92 1.14c-.17.19-.33.21-.61.07-.29-.15-1.22-.45-2.32-1.42-.86-.77-1.44-1.72-1.61-2 .17-.25.02-.38-.12-.53-.13-.13-.29-.33-.43-.5-.15-.17-.2-.29-.3-.48-.1-.19-.05-.35.02-.5.07-.14.65-1.56.89-2.15.23-.56.46-.49.63-.5.17-.01.37-.01.57-.01.19 0 .5.07.76.36s.87.85.95.92c.08.07.13.14.2.23.07.08.02.15-.02.23-.04.08-.61 1.46-.85 2s-.28.41.04.67c.32.26 1.35 2.07 3.28 2.9 1.92.83 1.92.55 2.27.51.35-.04 1.14-.46 1.3-.91.16-.45.16-.83.11-.91-.05-.08-.18-.13-.37-.23z" />
-          </svg>
-          <span className="font-semibold">Chat on WhatsApp</span>
-        </a>
+            <p className="contact__intro">
+              Whether you have a project in mind, want to collaborate,
+              or simply want to connect, I'd be happy to hear from you.
+            </p>
+          </div>
 
-        {/* Email */}
-        <a
-          href="andrianmutwii@gmail.com"
-          className="flex items-center gap-3 bg-blue-500 hover:bg-blue-600 px-6 py-4 rounded-lg transition transform hover:scale-105 shadow-lg"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path d="M12 13.5L0 6v12a2 2 0 002 2h20a2 2 0 002-2V6l-12 7.5zM12 12L0 4V2a2 2 0 012-2h20a2 2 0 012 2v2l-12 8z" />
-          </svg>
-          <span className="font-semibold">Send Email</span>
-        </a>
+          <div className="contact__actions">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="contact__link contact__link--primary"
+            >
+              <span className="contact__link-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.52 3.48A11.92 11.92 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.56 4.2 1.62 6.03L0 24l6.14-1.61A11.96 11.96 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.2-1.24-6.2-3.48-8.52ZM12 22a9.94 9.94 0 0 1-5.06-1.38l-.36-.21-3.65.96.97-3.56-.24-.37A9.95 9.95 0 0 1 2 12C2 6.49 6.49 2 12 2s10 4.49 10 10-4.49 10-10 10Zm5.47-7.46c-.3-.15-1.73-.85-2-.95-.27-.1-.46-.15-.65.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.07-.29-.15-1.22-.45-2.32-1.43-.86-.76-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.5.15-.17.2-.3.3-.49.1-.19.05-.36-.02-.5-.08-.15-.66-1.58-.9-2.16-.23-.57-.47-.49-.64-.5h-.55c-.2 0-.5.07-.76.36-.27.29-1 1-1 2.43s1.02 2.82 1.16 3.02c.15.2 2 3.06 4.84 4.29.68.29 1.21.47 1.63.6.69.22 1.32.19 1.82.11.56-.08 1.73-.71 1.97-1.4.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.56-.34Z" />
+                </svg>
+              </span>
 
+              <span>
+                <strong>Chat on WhatsApp</strong>
+                <small>Let's start a conversation</small>
+              </span>
+
+              <span className="contact__arrow" aria-hidden="true">↗</span>
+            </a>
+
+            <a
+              href={`mailto:${emailAddress}`}
+              className="contact__link"
+            >
+              <span className="contact__link-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6">
+                  <rect x="2.5" y="4.5" width="19" height="15" rx="2" />
+                  <path d="m3 6 9 7 9-7" />
+                </svg>
+              </span>
+
+              <span>
+                <strong>Send me an email</strong>
+                <small>{emailAddress}</small>
+              </span>
+
+              <span className="contact__arrow" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div className="contact__email-copy">
+            <span className="contact__email-label">PREFER TO COPY MY EMAIL?</span>
+
+            <button
+              type="button"
+              onClick={copyEmail}
+              className="contact__copy-button"
+            >
+              {copied ? "Email copied ✓" : "Copy email address ↗"}
+            </button>
+          </div>
+        </div>
+
+        <footer className="contact__footer">
+          <span>OPEN TO INTERESTING OPPORTUNITIES</span>
+          <span className="contact__footer-line" aria-hidden="true" />
+          <a href="#hero">BACK TO TOP ↑</a>
+        </footer>
       </div>
     </section>
   );

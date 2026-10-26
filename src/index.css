@@ -1,60 +1,118 @@
-@import "tailwindcss";
-body{
-  font-family: 'Poppins', sans-serif;
+
+:root {
+  font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color-scheme: light;
+
+  --page-bg: #f7f5f0;
+  --nav-bg: #f7f5f0;
+  --surface-hover: #ebe8e0;
+  --text-primary: #171715;
+  --text-secondary: #625f58;
+  --text-muted: #77736c;
+  --border-color: #d9d4c9;
+  --accent: #81734e;
 }
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --page-bg: #171715;
+  --nav-bg: #1d1c19;
+  --surface-hover: #302f2a;
+  --text-primary: #f7f5f0;
+  --text-secondary: #c3bfb6;
+  --text-muted: #a19c91;
+  --border-color: #3b3933;
+  --accent: #c8b98d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
-}
-@keyframes gradientMove {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
+  scroll-padding-top: 85px;
 }
 
-.animated-gradient {
-  background: linear-gradient(
-    -45deg,
-    #0f172a,
-    #020617,
-    #1e293b,
-    #020617
-  );
-  background-size: 400% 400%;
-  animation: gradientMove 15s ease infinite;
-}
-@keyframes scrollLeft {
-0% {transform: translateX(0);}
-100% {transform: translateX(-50%);}
-}
-/* Add this in your CSS file, e.g., index.css */
-.animated-gradient {
-  background: linear-gradient(270deg, #0ea5e9, #14b8a6, #f97316, #e11d48);
-  background-size: 800% 800%;
-  animation: gradientShift 15s ease infinite;
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-@keyframes scrollRight {
-0% {transform: translateX(-50%);}
-100% {transform: translateX(0);}
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-.animate-scroll-left{
-animation: scrollLeft 18s linear infinite;
+img {
+  max-width: 100%;
 }
 
-.animate-scroll-right{
-animation: scrollRight 22s linear infinite;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
-.animate-scroll-left-slow{
-animation: scrollLeft 28s linear infinite;
+
+:root {
+  color-scheme: light;
+  --page-bg: #f7f5f0;
+  --nav-bg: #f7f5f0;
+  --surface-hover: #ebe8e0;
+  --text-primary: #171715;
+  --text-secondary: #625f58;
+  --text-muted: #77736c;
+  --border-color: #d9d4c9;
+  --accent: #81734e;
 }
 
-.animate-scroll-right-slow{
-animation: scrollRight 30s linear infinite;
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page-bg: #171715;
+  --nav-bg: #1d1c19;
+  --surface-hover: #302f2a;
+  --text-primary: #f7f5f0;
+  --text-secondary: #c3bfb6;
+  --text-muted: #a19c91;
+  --border-color: #3b3933;
+  --accent: #c8b98d;
+}
+
+html {
+  scroll-padding-top: 90px;
+}
+
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--text-primary);
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
