@@ -5,7 +5,9 @@ import "./Dashboard.css";
 const navigation = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
+  { label: "Skills", href: "#soft-skills" },
+  { label: "Training", href: "#training" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact Me", href: "#contact" },
 ];
 

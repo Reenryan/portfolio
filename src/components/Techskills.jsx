@@ -5,7 +5,8 @@ const skillGroups = [
   {
     number: "01",
     title: "Programming",
-    description: "Languages for building applications and solving problems.",
+    description:
+      "Programming languages for software development, computation, and problem-solving.",
     skills: [
       "Python",
       "JavaScript",
@@ -13,73 +14,98 @@ const skillGroups = [
       "C",
       "R",
       "MATLAB",
+      "Stata",
     ],
   },
   {
-  number: "02",
-  title: "Data Analysis",
-  description:
-    "Data cleaning, statistical analysis, visualization, and extracting insights to support informed decisions.",
-  skills: [
-    "Python",
-    "R",
-    "MATLAB",
-    "Power BI",
-    "Microsoft Excel",
-    "Statistics",
-    "Data Visualization",
-    "Predictive Modelling",
-  ],
-},
+    number: "02",
+    title: "Data Analysis & Statistics",
+    description:
+      "Statistical analysis, mathematical modelling, data interpretation, and generating meaningful insights.",
+    skills: [
+      "Python",
+      "R",
+      "MATLAB",
+      "Stata",
+      "NVivo",
+      "Microsoft Excel",
+      "Statistical Analysis",
+      "Predictive Modelling",
+    ],
+  },
   {
     number: "03",
     title: "Web Development",
-    description: "Frontend interfaces and server-side application development.",
+    description:
+      "Building responsive frontend interfaces and functional backend applications.",
     skills: [
-      "HTML",
-      "CSS",
-      "React",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "React.js",
       "Node.js",
-      "Express",
+      "Express.js",
       "Embedded JavaScript (EJS)",
     ],
   },
   {
     number: "04",
-    title: "Data & Databases",
-    description: "Working with structured data, analysis, and visualization.",
+    title: "Databases",
+    description:
+      "Relational and NoSQL database management, data storage, and querying.",
     skills: [
+      "PostgreSQL",
       "MySQL",
-      "SQL Server",
       "MongoDB",
-      "Power BI",
-      "Microsoft Excel",
     ],
   },
   {
     number: "05",
-    title: "Tools & Design",
-    description: "Version control, containers, and visual communication.",
+    title: "Data Collection & GIS",
+    description:
+      "Digital field data collection, survey management, and geospatial analysis.",
+    skills: [
+      "KoboToolbox",
+      "ODK",
+      "QGIS",
+      "Digital Data Collection",
+      "Spatial Analysis",
+      "Data Visualization",
+    ],
+  },
+  {
+    number: "06",
+    title: "Tools & Systems",
+    description:
+      "Development tools, version control, operating systems, and networking fundamentals.",
     skills: [
       "Git",
       "GitHub",
       "Docker",
-      "Canva",
+      "Visual Studio Code",
+      "Postman",
+      "Linux",
+      "Windows",
+      "Networking",
     ],
   },
 ];
 
 const tickerSkills = [
   "Python",
-  "React",
+  "React.js",
   "Node.js",
-  "SQL",
-  "Power BI",
+  "PostgreSQL",
+  "Stata",
   "JavaScript",
   "Docker",
   "Data Analysis",
   "Git",
   "MongoDB",
+  "KoboToolbox",
+  "QGIS",
+  "ODK",
+  "MATLAB",
 ];
 
 export default function Techskills() {
@@ -103,15 +129,18 @@ export default function Techskills() {
             </h2>
 
             <p className="techskills__intro">
-              A growing toolkit for building software, working with data,
-              and bringing ideas to life.
+              A growing toolkit for building software, analysing data,
+              collecting information, and exploring spatial insights.
             </p>
           </div>
         </header>
 
         <div className="techskills__groups">
           {skillGroups.map((group) => (
-            <article className="techskills__group" key={group.number}>
+            <article
+              className="techskills__group"
+              key={group.number}
+            >
               <div className="techskills__group-heading">
                 <span className="techskills__number">
                   {group.number}
@@ -141,8 +170,14 @@ export default function Techskills() {
         </div>
       </div>
 
-      <div className="techskills__ticker" aria-label="Selected technologies">
-        <div className="techskills__ticker-track" aria-hidden="true">
+      <div
+        className="techskills__ticker"
+        aria-label="Selected technologies"
+      >
+        <div
+          className="techskills__ticker-track"
+          aria-hidden="true"
+        >
           {[...tickerSkills, ...tickerSkills].map((skill, index) => (
             <span
               className="techskills__ticker-item"

@@ -7,7 +7,7 @@ function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__top">
-          <a href="#hero" className="footer__brand">
+          <a href="#about" className="footer__brand">
             <span className="footer__brand-mark">R.</span>
             <span className="footer__brand-name">Ryan</span>
           </a>
@@ -16,7 +16,7 @@ function Footer() {
             Building, learning, and improving — one project at a time.
           </p>
 
-          <a href="#hero" className="footer__back-top">
+          <a href="#about" className="footer__back-top">
             Back to top <span aria-hidden="true">↑</span>
           </a>
         </div>
@@ -25,7 +25,7 @@ function Footer() {
 
         <div className="footer__bottom">
           <p className="footer__copyright">
-            © {currentYear} <strong>Reen Ryan</strong>. All rights reserved.
+            © {currentYear} <strong>Mutwii Ryan</strong>. All rights reserved.
           </p>
 
           <nav className="footer__socials" aria-label="Social links">

@@ -97,7 +97,7 @@ function Contact() {
         <footer className="contact__footer">
           <span>OPEN TO INTERESTING OPPORTUNITIES</span>
           <span className="contact__footer-line" aria-hidden="true" />
-          <a href="#hero">BACK TO TOP ↑</a>
+          <a href="#about">BACK TO TOP ↑</a>
         </footer>
       </div>
     </section>
